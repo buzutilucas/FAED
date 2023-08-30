@@ -285,9 +285,6 @@ def run_features(
             features = detector(images.to(config.device), **detector_kwargs)
         else:
             with torch.no_grad():
-                images = resize(images)
-                # This will normalize the image in the range [-0.5,0.5].
-                images = images.to(torch.float32) / 255.0 - 0.5
                 features = detector(images.to(config.device))
                 features = features.flatten(start_dim=1)
         stats.append(features, num_gpus=config.num_gpus, rank=config.rank)
