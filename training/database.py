@@ -60,19 +60,8 @@ class Dataset(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         image = self._load_raw_image(self._raw_idx[idx])
         assert isinstance(image, np.ndarray)
-        assert list(image.shape) == self.image_shape
-        assert image.dtype == np.uint8
-        if self._transform is not None:
-            # transform(HWC) => CHW
-            image = image.transpose(2, 0, 1)
-            return self._transform(image.copy())
-        image = image.transpose(2, 0, 1) # HWC => CHW
-        return torch.from_numpy(image.copy())
-
-    def __getitem__(self, idx):
-        image = self._load_raw_image(self._raw_idx[idx])
-        assert isinstance(image, np.ndarray)
-        assert list(image.shape) == self.image_shape
+        if self._transform is None:
+            assert list(image.shape) == self.image_shape
         assert image.dtype == np.uint8
         if self._transform is not None:
             image = image.transpose(1, 2, 0) # CHW => HWC
