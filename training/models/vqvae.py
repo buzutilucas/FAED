@@ -1,6 +1,5 @@
-# FEI University Center, São Bernardo do Campo, São Paulo, Brazil
-# Images Processing Laboratory.
-# Authors: Lucas F. Buzuti and Carlos E. Thomaz
+# Copyright (c) 2022, The Images Processing Laboratory Authors. All Rights Reserved.
+# Authors:
 #
 
 from lib.__typing__ import *
